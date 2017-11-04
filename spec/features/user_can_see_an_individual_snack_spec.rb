@@ -9,14 +9,14 @@ feature 'When a user visits a snack show page' do
 
     snack = Snack.create!(snack: "White Castle Burger", price: "3.50")
 
-    dons.snacks.create!(snack: snack.snack, price: snack.price)
+    dons.snacks << snack
     dons.snacks.create!(snack: "Pop Rocks", price: "1.50")
     dons.snacks.create!(snack: "Pop Rocks", price: "1.50")
+    dons.snacks.create!(snack: "Gum", price: "0.50")
 
-    matts.snacks.create!(snack: snack.snack, price: snack.price)
+    matts.snacks << snack
 
     visit snack_path(snack)
-    save_and_open_page
   end
 
   scenario 'they see the snack name' do
@@ -30,7 +30,7 @@ feature 'When a user visits a snack show page' do
     expect(page).to have_content("Matt's Un-mixed Drinks")
   end
   scenario 'they see the average price for snacks in those vending machines' do
-    expect(page).to have_content("Average Snack Price: $2.5")
+    expect(page).to have_content("Average Snack Price: $1.75")
     expect(page).to have_content("Average Snack Price: $3.5")
   end
   scenario 'they see a count of the different kinds of items in that vending machine' do
