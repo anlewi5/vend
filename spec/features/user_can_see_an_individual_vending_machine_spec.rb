@@ -12,7 +12,8 @@ feature 'When a user visits a vending machine show page' do
   scenario 'they see the name and price of all the snacks associated with that machine' do
     owner = Owner.create(name: "Sam's Snacks")
     dons  = owner.machines.create(location: "Don's Mixed Drinks")
-    #snacks
+    Snack.create!(snack: "White Castle Burger", price: "3.50")
+    Snack.create!(snack: "Pop Rocks", price: "1.50")
     #snacks
 
     visit machine_path(dons)
